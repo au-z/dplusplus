@@ -1,3 +1,5 @@
+'use strict';
+
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
@@ -6,7 +8,7 @@ import {RepSvc} from './rep/rep.svc';
 
 @Component({
 	selector: 'dpp-app',
-	templateUrl: 'views/app.comp.html',
+	templateUrl: 'app/app.comp.html',
 	directives: [ROUTER_DIRECTIVES],
 	providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, RepSvc],
 })

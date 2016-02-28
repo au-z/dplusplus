@@ -1,3 +1,4 @@
+'use strict';
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,31 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var http_1 = require('angular2/http');
 var Observable_1 = require('rxjs/Observable');
-var mock_reps_1 = require('./mock-reps');
 var RepSvc = (function () {
     function RepSvc(http) {
         this.http = http;
-        this._mockRepsUrl = 'app/rep/mock-reps.json';
+        this._mockRepsUrl = 'https://www.govtrack.us/api/v2/role?current=true';
     }
-    RepSvc.prototype.getMockReps = function () {
-        return Promise.resolve(mock_reps_1.REPS);
-    };
     RepSvc.prototype.getReps = function () {
-        console.log('huh?');
         return this.http.get(this._mockRepsUrl)
-            .map(function (res) { return res.json().data; })
-            .do(function (data) { return console.log(data); }) //eyeball
+            .map(function (res) { return res.json().objects; })
+            .do(function (data) { return console.log(data); })
             .catch(this.handleError);
     };
-    RepSvc.prototype.handleError = function (error) {
-        // console.log(error);
-        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    RepSvc.prototype.getRep = function (id) {
+        return this.http.get(this._mockRepsUrl)
+            .map(function (res) { return res.json(); })
+            .map(function (reps) { return reps.filter(function (rep) { return rep.id === id; }); });
+    };
+    RepSvc.prototype.handleError = function (e) {
+        console.log("Error: " + e);
+        return Observable_1.Observable.throw('Server error');
     };
     RepSvc = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
     ], RepSvc);
     return RepSvc;
-})();
+}());
 exports.RepSvc = RepSvc;
 //# sourceMappingURL=rep.svc.js.map

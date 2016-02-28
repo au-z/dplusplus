@@ -1,3 +1,4 @@
+"use strict";
 var browser_1 = require('angular2/platform/browser');
 var app_comp_1 = require('./app.comp');
 require('rxjs/Rx');

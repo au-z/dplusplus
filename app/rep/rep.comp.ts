@@ -1,3 +1,5 @@
+'use strict';
+
 import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
 import {Rep} from './rep';
@@ -6,7 +8,8 @@ import {Router} from 'angular2/router';
 
 @Component({
 	selector: 'rep-list',
-	templateUrl: 'views/rep/rep.comp.html',
+	templateUrl: 'app/rep/rep.comp.html',
+	styleUrls: ['/dist/app/css/main.css'],
 	providers: [RepSvc]
 })
 
@@ -18,13 +21,11 @@ export class RepComp implements OnInit {
 
 	constructor(private _router: Router, private _repSvc: RepSvc) { }
 	ngOnInit() {
-		console.log('hweg');
 		this.getReps();
 	}
 	getReps(){
-		console.log('get');
 		this._repSvc.getReps().subscribe(
-			reps => this.reps = reps, 
+			reps => this.reps = reps,
 			error => this.errorMessage = <any>error,
 			() => console.log(this.reps));
 	}

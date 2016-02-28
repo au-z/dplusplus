@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="pg-title col-lg-10">
+		<h3>{{title}}</h3>
+	</div>
+</div>
+<ul class="reps col-lg-6 col-lg-offset-3">
+	<li class="rep row" *ngFor="#rep of reps" (click)="onSelect(rep)">
+		<div id="rep_{{rep.id}}" class="card col-lg-12">
+			<div class="card-title row party_{{rep.party}}">
+				<h4>{{rep.person.name}}</h4>
+			</div>
+			<div class="card-content row">
+				<div class="col-lg-8">
+
+				</div>
+				<div class="rep-links col-lg-4">
+
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+<br>
+<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

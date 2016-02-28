@@ -1,14 +1,15 @@
-'use strict';
-
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+var gulp = require('gulp'),
+	sass = require('gulp-sass'),
+	concat = require('gulp-concat'),
+	cssmin = require('gulp-cssmin');
 
 gulp.task('sass', function(){
-	return gulp.src('./sass/**/*.scss')
+	return gulp.src('./app/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('./css'));
+		.pipe(cssmin())
+		.pipe(gulp.dest('./dist/app'));
 });
 
 gulp.task('sass:w', function(){
-	gulp.watch('./sass/**/*.scss', ['sass']);
+	gulp.watch('app/**/*.scss', ['sass'])
 });

@@ -1,3 +1,4 @@
+'use strict';
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -17,12 +18,10 @@ var RepComp = (function () {
         this.title = 'Representatives';
     }
     RepComp.prototype.ngOnInit = function () {
-        console.log('hweg');
         this.getReps();
     };
     RepComp.prototype.getReps = function () {
         var _this = this;
-        console.log('get');
         this._repSvc.getReps().subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; }, function () { return console.log(_this.reps); });
     };
     RepComp.prototype.onSelect = function (rep) {
@@ -32,12 +31,13 @@ var RepComp = (function () {
     RepComp = __decorate([
         core_1.Component({
             selector: 'rep-list',
-            templateUrl: 'views/rep/rep.comp.html',
+            templateUrl: 'app/rep/rep.comp.html',
+            styleUrls: ['/dist/app/css/main.css'],
             providers: [rep_svc_1.RepSvc]
         }), 
         __metadata('design:paramtypes', [router_1.Router, rep_svc_1.RepSvc])
     ], RepComp);
     return RepComp;
-})();
+}());
 exports.RepComp = RepComp;
 //# sourceMappingURL=rep.comp.js.map

@@ -1,3 +1,4 @@
+"use strict";
 exports.REPS = [
     { "id": 11, "name": "Sen. Never" },
     { "id": 12, "name": "Sen. Gonna" },

@@ -1,8 +1,0 @@
-<h3>{{title}}</h3>
-<ul class="reps">
-	<li *ngFor="#rep of reps" (click)="onSelect(rep)">
-		<span class="rep">{{rep.id}}</span> {{rep.name}}
-	</li>
-</ul>
-<br>
-<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>

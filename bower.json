@@ -17,10 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular2": "angular-es6#2.0.0-alpha.19",
     "bootstrap": "~3.3.6"
   },
-  "devDependencies": {
-    "bootstrap": "^3.3.6"
-  }
 }
