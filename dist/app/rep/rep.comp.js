@@ -9,33 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var rep_svc_1 = require('./rep.svc');
-var router_1 = require('angular2/router');
 var RepComp = (function () {
-    function RepComp(_router, _repSvc) {
-        this._router = _router;
-        this._repSvc = _repSvc;
-        this.title = 'Representatives';
+    function RepComp() {
+        console.log('new rep');
     }
-    RepComp.prototype.ngOnInit = function () {
-        this.getReps();
-    };
-    RepComp.prototype.getReps = function () {
-        var _this = this;
-        this._repSvc.getReps().subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; }, function () { return console.log(_this.reps); });
-    };
-    RepComp.prototype.onSelect = function (rep) {
-        console.log(rep.id);
-        //unimplemented
-    };
     RepComp = __decorate([
         core_1.Component({
-            selector: 'rep-list',
-            templateUrl: 'app/rep/rep.comp.html',
-            styleUrls: ['/dist/app/css/main.css'],
-            providers: [rep_svc_1.RepSvc]
+            selector: 'dpp-rep',
+            templateUrl: './rep.comp.html',
+            styleUrls: ['/dist/app/css/main.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, rep_svc_1.RepSvc])
+        __metadata('design:paramtypes', [])
     ], RepComp);
     return RepComp;
 }());

@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var http_1 = require('angular2/http');
-var rep_comp_1 = require('./rep/rep.comp');
+var rep_list_comp_1 = require('./rep/rep_list.comp');
 var rep_svc_1 = require('./rep/rep.svc');
 var DppAppComp = (function () {
     function DppAppComp() {
@@ -28,7 +28,7 @@ var DppAppComp = (function () {
             {
                 path: '/reps',
                 name: 'Reps',
-                component: rep_comp_1.RepComp,
+                component: rep_list_comp_1.RepComp,
                 useAsDefault: true
             }
         ]), 

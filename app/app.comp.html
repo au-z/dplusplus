@@ -1,7 +1,13 @@
-<h1>{{title}}</h1>
-<nav>
-	<ul>
+<nav class="navbar navbar-fixed-top">
+<div class="container-fluid">
+<div class="navbar-header">
+	<a class="navbar-brand" href="#">{{title}}</a>
+	<ul class="nav navbar-nav">
 		<li><a [routerLink]="['Reps']">Representatives</a></li>
 	</ul>
+</div>
+</div>
 </nav>
-<router-outlet></router-outlet>
+<div class="content">
+	<router-outlet></router-outlet>
+</div>

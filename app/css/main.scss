@@ -1,4 +1,4 @@
-$cl: #e6ebee;
+$cl: #F3F4F5;
 $cml: #c7c0bc;
 $cm: #908575;
 $cd: #453e31;
@@ -6,10 +6,19 @@ $ca: #ca774e;
 
 $democrat-blue: #6485E3;
 $republican-red: #E36D5D;
-$independent-gray: #e6ebee;
+$independent-gray: #F3F4F5;
+
+@font-face{
+	font-family: "university_oldstyle";
+	src: url('/fonts/university_oldstyle.ttf') format('truetype');
+}
 
 body{
 	background-color: $cl;
+}
+
+h1, h2, h3, .navbar-brand{
+	font-family: 'university_oldstyle', Fallback, serif;
 }
 
 h1{
@@ -17,6 +26,7 @@ h1{
 }
 
 h3{
+
 	color: $ca;
 }
 
@@ -24,8 +34,42 @@ h3{
 	border-bottom: 1px solid $cml;
 }
 
+nav.navbar{
+	background-color: white;
+	border: 0;
+	&.nav>li {
+		float: left;
+	}
+	.router-link-active{
+		border-style: inset;
+		border: 0;
+		background-color: $cl;
+		border-bottom: 3px solid $republican-red;
+	}
+	.navbar-brand{
+		padding: 12px;
+		font-size: 2.4em;
+	}
+	a{
+		color: #555;
+
+	}
+}
+
+.content{
+	margin-top: 80px;
+}
+
+.filters{
+	position: fixed;
+	height: 100%;
+	top: 53px;
+	background-color: white;
+	padding-left: 0;
+}
+
 ul.reps{
-	li.rep{
+	li{
 		list-style: none;
 	}
 	list-style: none;
@@ -38,67 +82,86 @@ ul.reps{
 	background-color: #fff;
 	transition: box-shadow .25s;
 	border-radius: 2px;
+	&:first-child{
+		margin-top: 0;
+	}
 	&:before, &:after{
 		z-index: -1;
-	  position: absolute;
-	  content: "";
-	  bottom: 15px;
-	  left: 10px;
-	  width: 50%;
-	  top: 80%;
-	  max-width:500px;
-	  background: #777;
-	  -webkit-box-shadow: 0 12px 6px #777;
-	  -moz-box-shadow: 0 12px 6px #777;
-	  box-shadow: 0 12px 6px #777;
-	  -webkit-transform: rotate(-2deg);
-	  -moz-transform: rotate(-2deg);
-	  -o-transform: rotate(-2deg);
-	  -ms-transform: rotate(-2deg);
-	  transform: rotate(-2deg);
+		position: absolute;
+		content: "";
+		bottom: 15px;
+		left: 10px;
+		width: 50%;
+		top: 80%;
+		max-width:500px;
+		background: #777;
+		-webkit-box-shadow: 0 12px 6px #aaa;
+		-moz-box-shadow: 0 12px 6px #aaa;
+		box-shadow: 0 12px 6px #aaa;
+		-webkit-transform: rotate(-2deg);
+		-moz-transform: rotate(-2deg);
+		-o-transform: rotate(-2deg);
+		-ms-transform: rotate(-2deg);
+		transform: rotate(-2deg);
 	}
 	&:after{
-	  -webkit-transform: rotate(3deg);
-	  -moz-transform: rotate(3deg);
-	  -o-transform: rotate(3deg);
-	  -ms-transform: rotate(3deg);
-	  transform: rotate(3deg);
-	  right: 10px;
-	  left: auto;
+		-webkit-transform: rotate(2deg);
+		-moz-transform: rotate(2deg);
+		-o-transform: rotate(2deg);
+		-ms-transform: rotate(2deg);
+		transform: rotate(2deg);
+		right: 10px;
+		left: auto;
 	}
 	.card-title{
-		h4{ margin: 1rem; }
-		&.party_Democrat{
-			border-bottom: 3px solid $democrat-blue;
+		h4{
+			margin-bottom: 2px;
 		}
-		&.party_Republican{
-			border-bottom: 3px solid $republican-red;
+		.card-subtitle{
+			font-style: italic;
+			color: #888;
+			margin-bottom: 4px;
 		}
-		&.party_Independent{
-			border-bottom: 3px solid $independent-gray;
-		}
-
 	}
 	.card-content{
-
+		padding: 16px 0;
+	}
+	.card-footer{
+		min-height: 16px;
+	}
+	ul{
+		padding-left: 0;
 	}
 }
 
-.effect2
-{
-  position: relative;
+.party_Democrat{
+	border-bottom: 4px solid $democrat-blue;
 }
-.effect2:before, .effect2:after
-{
+.party_Republican{
+	border-bottom: 4px solid $republican-red;
+}
+.party_Independent{
+	border-bottom: 4px solid $independent-gray;
+}
 
+.rep-links{
+	padding-right: 0;
+	.navbar-right{
+		float: right;
+	}
+	.navbar-nav{
+		margin: 0;
+		&>li{
+			float: left;
+			&>a{
+				padding-top: 15px;
+    		padding-bottom: 15px;
+			}
+		}
+	}
+	.fa{
+		font-size: 1.4em;
+		color: #555;
+	}
 }
-.effect2:after
-{
-  -webkit-transform: rotate(3deg);
-  -moz-transform: rotate(3deg);
-  -o-transform: rotate(3deg);
-  -ms-transform: rotate(3deg);
-  transform: rotate(3deg);
-  right: 10px;
-  left: auto;
-}
+
