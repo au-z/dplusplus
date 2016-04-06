@@ -12,17 +12,33 @@ var core_1 = require('angular2/core');
 var rep_svc_1 = require('./rep.svc');
 var router_1 = require('angular2/router');
 var RepComp = (function () {
-    function RepComp(_router, _repSvc) {
+    function RepComp(_router, repSvc) {
         this._router = _router;
-        this._repSvc = _repSvc;
+        this.repSvc = repSvc;
         this.title = 'Representatives';
+        var stateFilter = {
+            key: 'state',
+            operator: 'exact',
+            value: 'MN'
+        };
+        var currentFilter = {
+            key: 'current',
+            operator: '',
+            value: 'true'
+        };
+        this.query = {
+            limit: 100,
+            sort: ['person'],
+            sortDesc: false,
+            filter: [currentFilter, stateFilter],
+        };
     }
     RepComp.prototype.ngOnInit = function () {
         this.getReps(this.query);
     };
     RepComp.prototype.getReps = function (query) {
         var _this = this;
-        this._repSvc.getReps(query).subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; }, function () { return console.log("got reps."); });
+        this.repSvc.getReps(query).subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; }, function () { return console.log('got reps.'); });
     };
     RepComp.prototype.onSelect = function (rep) {
         console.log(rep.id);

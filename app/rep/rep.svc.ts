@@ -6,20 +6,20 @@ import {Observable} from 'rxjs/Observable';
 
 import {Rep} from './rep';
 
-import {queryParams} from '../../app/govtrack/queryParams';
+import {QueryParams, Filter, FilterOp} from '../../app/govtrack/queryParams';
 
 @Injectable()
 
 export class RepSvc{
 	constructor(private http: Http){}
-	// private _mockRepsUrl = 'https://www.govtrack.us/api/v2/role';
+
 	private _mockRepsUrl = '/app/rep/mock-reps.json';
+	private serviceUrl = 'https://www.govtrack.us/api/v2/role';
 	private DEFAULT_LIMIT: number = 20;
 
-	getReps(query : queryParams){
-		return this.http.get(this._mockRepsUrl + this.formatQuery(query))
+	getReps(query : QueryParams){
+		return this.http.get(this.serviceUrl + this.formatQuery(query))
 			.map(res => <Rep[]> res.json().objects)
-			// .do(data => console.log(data))
 			.catch(this.handleError);
 	}
 	getRep(id: number) {
@@ -28,13 +28,30 @@ export class RepSvc{
 			.map(reps => reps.filter(rep => rep.id === id));
 	}
 
-	private formatQuery(q : queryParams){
-		var query: string = "?"
-		query += "limit=" + (q.limit == null) ? this.DEFAULT_LIMIT : q.limit;
+	private formatQuery(q : QueryParams){
+		var sortPrefix: string = q.sortDesc ? '-' : '';
+
+		var query: string = '?'
+		if(q.filter){
+			query += "&"  + q.filter.map(f => this.formatFilterParameter(f)).join("&");
+		}
+		if (q.sort) {
+			query += '&sort=' + q.sort.map(m => sortPrefix + m).join('|');
+		}
+		query += (q.limit !== null) ? '&limit=' + q.limit : '&limit=' + this.DEFAULT_LIMIT;
+		console.log('GOVTRACK QUERY: ' + query);
+		return query;
+	}
+
+	private formatFilterParameter(f: Filter) {
+		if (f.operator) {
+			return f.key + '__' + f.operator + '=' + f.value;
+		}
+		return f.key + '=' + f.value;
 	}
 
 	private handleError (e: Response){
-		console.log("Error: " + e);
+		console.log('Error: ' + e);
 		return Observable.throw('Server error');
 	}
 }

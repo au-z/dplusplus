@@ -6,7 +6,7 @@ import {Rep} from './rep';
 import {RepSvc} from './rep.svc';
 import {Router} from 'angular2/router';
 
-import {queryParams} from '../govtrack/queryParams';
+import {QueryParams, Filter, FilterOp} from '../govtrack/queryParams';
 
 @Component({
 	selector: 'rep-list',
@@ -19,19 +19,41 @@ export class RepComp implements OnInit {
 	public title = 'Representatives';
 	public reps: Rep[];
 	public selectedRep: Rep;
-	public query: queryParams;
+	public query: QueryParams;
 	errorMessage: string;
 
-	constructor(private _router: Router, private _repSvc: RepSvc) { }
+	constructor(private _router: Router, private repSvc: RepSvc) {
+		var stateFilter = {
+			key: 'state',
+			operator: 'exact',
+			value: 'MN'
+		};
+
+		var currentFilter = {
+			key: 'current',
+			operator: '',
+			value: 'true'
+		};
+
+		this.query = {
+			limit: 100,
+			sort: ['person'],
+			sortDesc: false,
+			filter: [currentFilter, stateFilter],
+		};
+	}
+
 	ngOnInit() {
 		this.getReps(this.query);
 	}
-	getReps(query: queryParams){
-		this._repSvc.getReps(query).subscribe(
+
+	getReps(query: QueryParams){
+		this.repSvc.getReps(query).subscribe(
 			reps => this.reps = reps,
 			error => this.errorMessage = <any>error,
-			() => console.log("got reps."));
+			() => console.log('got reps.'));
 	}
+
 	onSelect(rep: Rep){
 		console.log(rep.id);
 		//unimplemented

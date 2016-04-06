@@ -14,12 +14,12 @@ var Observable_1 = require('rxjs/Observable');
 var RepSvc = (function () {
     function RepSvc(http) {
         this.http = http;
-        // private _mockRepsUrl = 'https://www.govtrack.us/api/v2/role';
         this._mockRepsUrl = '/app/rep/mock-reps.json';
+        this.serviceUrl = 'https://www.govtrack.us/api/v2/role';
         this.DEFAULT_LIMIT = 20;
     }
     RepSvc.prototype.getReps = function (query) {
-        return this.http.get(this._mockRepsUrl + this.formatQuery(query))
+        return this.http.get(this.serviceUrl + this.formatQuery(query))
             .map(function (res) { return res.json().objects; })
             .catch(this.handleError);
     };
@@ -29,11 +29,27 @@ var RepSvc = (function () {
             .map(function (reps) { return reps.filter(function (rep) { return rep.id === id; }); });
     };
     RepSvc.prototype.formatQuery = function (q) {
-        var query = "?";
-        query += "limit=" + (q.limit == null) ? this.DEFAULT_LIMIT : q.limit;
+        var _this = this;
+        var sortPrefix = q.sortDesc ? '-' : '';
+        var query = '?';
+        if (q.filter) {
+            query += "&" + q.filter.map(function (f) { return _this.formatFilterParameter(f); }).join("&");
+        }
+        if (q.sort) {
+            query += '&sort=' + q.sort.map(function (m) { return sortPrefix + m; }).join('|');
+        }
+        query += (q.limit !== null) ? '&limit=' + q.limit : '&limit=' + this.DEFAULT_LIMIT;
+        console.log('GOVTRACK QUERY: ' + query);
+        return query;
+    };
+    RepSvc.prototype.formatFilterParameter = function (f) {
+        if (f.operator) {
+            return f.key + '__' + f.operator + '=' + f.value;
+        }
+        return f.key + '=' + f.value;
     };
     RepSvc.prototype.handleError = function (e) {
-        console.log("Error: " + e);
+        console.log('Error: ' + e);
         return Observable_1.Observable.throw('Server error');
     };
     RepSvc = __decorate([
