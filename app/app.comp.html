@@ -1,13 +1,16 @@
 <nav class="navbar navbar-fixed-top">
 <div class="container-fluid">
 <div class="navbar-header">
-	<a class="navbar-brand" href="#">{{title}}</a>
+	<a class="navbar-brand" href="#">{{title}}</a>	
+</div>
+<div class="navbar-header">	
 	<ul class="nav navbar-nav">
 		<li><a [routerLink]="['Reps']">Representatives</a></li>
 	</ul>
 </div>
 </div>
 </nav>
+
 <div class="content">
 	<router-outlet></router-outlet>
 </div>

@@ -2,9 +2,12 @@
 
 import {Component, View} from 'angular2/core';
 import {OnInit} from 'angular2/core';
+
 import {Rep} from './rep';
 import {RepSvc} from './rep.svc';
 import {Router} from 'angular2/router';
+
+import {SearchFilter} from '../filter/searchFilter.comp';
 
 import {QueryParams, Filter, FilterOp} from '../govtrack/queryParams';
 
@@ -12,7 +15,8 @@ import {QueryParams, Filter, FilterOp} from '../govtrack/queryParams';
 	selector: 'rep-list',
 	templateUrl: 'app/rep/rep_list.comp.html',
 	styleUrls: ['/dist/app/css/main.css'],
-	providers: [RepSvc]
+	providers: [RepSvc],
+	directives: [SearchFilter]
 })
 
 export class RepComp implements OnInit {
@@ -36,7 +40,7 @@ export class RepComp implements OnInit {
 		};
 
 		this.query = {
-			limit: 100,
+			limit: 50,
 			sort: ['person'],
 			sortDesc: false,
 			filter: [currentFilter, stateFilter],

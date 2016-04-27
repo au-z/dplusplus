@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('angular2/core');
 var rep_svc_1 = require('./rep.svc');
 var router_1 = require('angular2/router');
+var searchFilter_comp_1 = require('../filter/searchFilter.comp');
 var RepComp = (function () {
     function RepComp(_router, repSvc) {
         this._router = _router;
@@ -27,7 +28,7 @@ var RepComp = (function () {
             value: 'true'
         };
         this.query = {
-            limit: 100,
+            limit: 50,
             sort: ['person'],
             sortDesc: false,
             filter: [currentFilter, stateFilter],
@@ -49,11 +50,12 @@ var RepComp = (function () {
             selector: 'rep-list',
             templateUrl: 'app/rep/rep_list.comp.html',
             styleUrls: ['/dist/app/css/main.css'],
-            providers: [rep_svc_1.RepSvc]
+            providers: [rep_svc_1.RepSvc],
+            directives: [searchFilter_comp_1.SearchFilter]
         }), 
         __metadata('design:paramtypes', [router_1.Router, rep_svc_1.RepSvc])
     ], RepComp);
     return RepComp;
-}());
+})();
 exports.RepComp = RepComp;
 //# sourceMappingURL=rep_list.comp.js.map

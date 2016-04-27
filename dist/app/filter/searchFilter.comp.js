@@ -9,32 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
-var http_1 = require('angular2/http');
-var rep_list_comp_1 = require('./rep/rep_list.comp');
-var rep_svc_1 = require('./rep/rep.svc');
-var DppAppComp = (function () {
-    function DppAppComp() {
-        this.title = "Democracy++";
+var SearchFilter = (function () {
+    function SearchFilter() {
+        this.submitted = false;
     }
-    DppAppComp = __decorate([
+    SearchFilter.prototype.onSubmit = function () {
+        this.submitted = true;
+        console.log('submitted');
+    };
+    Object.defineProperty(SearchFilter.prototype, "debug", {
+        get: function () { return JSON.stringify(this.query); },
+        enumerable: true,
+        configurable: true
+    });
+    SearchFilter = __decorate([
         core_1.Component({
-            selector: 'dpp-app',
-            templateUrl: 'app/app.comp.html',
-            directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [router_1.ROUTER_PROVIDERS, http_1.HTTP_PROVIDERS, rep_svc_1.RepSvc],
-        }),
-        router_1.RouteConfig([
-            {
-                path: '/reps',
-                name: 'Reps',
-                component: rep_list_comp_1.RepComp,
-                useAsDefault: true
-            }
-        ]), 
+            selector: 'search-filter',
+            templateUrl: 'app/filter/searchFilter.comp.html'
+        }), 
         __metadata('design:paramtypes', [])
-    ], DppAppComp);
-    return DppAppComp;
+    ], SearchFilter);
+    return SearchFilter;
 })();
-exports.DppAppComp = DppAppComp;
-//# sourceMappingURL=app.comp.js.map
+exports.SearchFilter = SearchFilter;
+//# sourceMappingURL=searchFilter.comp.js.map
