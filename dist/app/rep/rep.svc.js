@@ -19,14 +19,9 @@ var RepSvc = (function () {
         this.DEFAULT_LIMIT = 20;
     }
     RepSvc.prototype.getReps = function (query) {
-        return this.http.get(this.serviceUrl + this.formatQuery(query))
+        return this.http.get(this._mockRepsUrl + this.formatQuery(query))
             .map(function (res) { return res.json().objects; })
             .catch(this.handleError);
-    };
-    RepSvc.prototype.getRep = function (id) {
-        return this.http.get(this._mockRepsUrl)
-            .map(function (res) { return res.json(); })
-            .map(function (reps) { return reps.filter(function (rep) { return rep.id === id; }); });
     };
     RepSvc.prototype.formatQuery = function (q) {
         var _this = this;

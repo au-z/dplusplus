@@ -17,12 +17,13 @@ var RepComp = (function () {
         this._router = _router;
         this.repSvc = repSvc;
         this.title = 'Representatives';
-        var stateFilter = {
+        this.states = ['', 'AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MH', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY'];
+        this.stateFilter = {
             key: 'state',
             operator: 'exact',
             value: 'MN'
         };
-        var currentFilter = {
+        this.currentFilter = {
             key: 'current',
             operator: '',
             value: 'true'
@@ -31,9 +32,32 @@ var RepComp = (function () {
             limit: 50,
             sort: ['person'],
             sortDesc: false,
-            filter: [currentFilter, stateFilter],
+            filter: [this.stateFilter, this.currentFilter]
         };
     }
+    RepComp.prototype.editStateFilter = function (value) {
+        var filterIdx = this.query.filter.findIndex(function (f) { return f.key === 'state'; });
+        // console.log(filterIdx);
+        if (filterIdx == -1 && value) {
+            this.query.filter.push({
+                key: 'state',
+                operator: 'exact',
+                value: value
+            });
+        }
+        else if (!value && filterIdx > -1) {
+            this.query.filter.splice(filterIdx, 1);
+        }
+        else {
+            this.query.filter[filterIdx].value = value; //edit filter
+        }
+        this.getReps(this.query);
+    };
+    RepComp.prototype.editCurrentFilter = function (value) {
+        this.currentFilter.value = (!JSON.parse(this.currentFilter.value)).toString();
+        console.log(value);
+        this.getReps(this.query);
+    };
     RepComp.prototype.ngOnInit = function () {
         this.getReps(this.query);
     };

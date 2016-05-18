@@ -9,7 +9,6 @@ import {Rep} from './rep';
 import {QueryParams, Filter, FilterOp} from '../../app/govtrack/queryParams';
 
 @Injectable()
-
 export class RepSvc{
 	constructor(private http: Http){}
 
@@ -18,20 +17,15 @@ export class RepSvc{
 	private DEFAULT_LIMIT: number = 20;
 
 	getReps(query : QueryParams){
-		return this.http.get(this.serviceUrl + this.formatQuery(query))
+		return this.http.get(this._mockRepsUrl + this.formatQuery(query))
 			.map(res => <Rep[]> res.json().objects)
 			.catch(this.handleError);
-	}
-	getRep(id: number) {
-		return this.http.get(this._mockRepsUrl)
-			.map(res => <Rep[]>res.json())
-			.map(reps => reps.filter(rep => rep.id === id));
 	}
 
 	private formatQuery(q : QueryParams){
 		var sortPrefix: string = q.sortDesc ? '-' : '';
+		var query: string = '?';
 
-		var query: string = '?'
 		if(q.filter){
 			query += "&"  + q.filter.map(f => this.formatFilterParameter(f)).join("&");
 		}

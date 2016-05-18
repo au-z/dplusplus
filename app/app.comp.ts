@@ -12,6 +12,7 @@ import {RepSvc} from './rep/rep.svc';
 	directives: [ROUTER_DIRECTIVES],
 	providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, RepSvc],
 })
+
 @RouteConfig([
 	{
 		path: '/reps',

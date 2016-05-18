@@ -22,6 +22,10 @@ var SearchFilter = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], SearchFilter.prototype, "queryOut", void 0);
     SearchFilter = __decorate([
         core_1.Component({
             selector: 'search-filter',
