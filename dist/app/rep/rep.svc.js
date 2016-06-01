@@ -19,7 +19,7 @@ var RepSvc = (function () {
         this.DEFAULT_LIMIT = 20;
     }
     RepSvc.prototype.getReps = function (query) {
-        return this.http.get(this._mockRepsUrl + this.formatQuery(query))
+        return this.http.get(this.serviceUrl + this.formatQuery(query))
             .map(function (res) { return res.json().objects; })
             .catch(this.handleError);
     };

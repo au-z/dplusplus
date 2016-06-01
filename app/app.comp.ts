@@ -4,6 +4,9 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {RepComp} from './rep/rep_list.comp';
+
+import {RepCtx} from './rep/repCtx.comp';
+
 import {RepSvc} from './rep/rep.svc';
 
 @Component({
@@ -17,7 +20,7 @@ import {RepSvc} from './rep/rep.svc';
 	{
 		path: '/reps',
 		name: 'Reps',
-		component: RepComp,
+		component: RepCtx,
 		useAsDefault: true
 	}
 ])

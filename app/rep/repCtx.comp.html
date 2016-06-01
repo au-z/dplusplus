@@ -1,0 +1,7 @@
+<search-filter (queryEmitter)="onSearch($event)"></search-filter>
+
+<div class="reps col-lg-4 col-lg-offset-4">
+	<rep-card *ngFor="#rep of reps" [rep]="rep" (click)="onSelect(rep)" ></rep-card>
+	<br>
+	<div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>

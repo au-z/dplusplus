@@ -68,11 +68,13 @@ nav.navbar{
 	padding-left: 0;
 }
 
-ul.reps{
-	li{
+div.reps{
+	ul{
+		li{
+			list-style: none;
+		}
 		list-style: none;
 	}
-	list-style: none;
 }
 
 .card{
@@ -144,24 +146,26 @@ ul.reps{
 	border-bottom: 4px solid $independent-gray;
 }
 
-.rep-links{
-	padding-right: 0;
-	.navbar-right{
-		float: right;
-	}
-	.navbar-nav{
-		margin: 0;
-		&>li{
-			float: left;
-			&>a{
-				padding-top: 15px;
-    		padding-bottom: 15px;
+rep-card{
+	.rep-links{
+		padding-right: 0;
+		.navbar-right{
+			float: right;
+		}
+		.navbar-nav{
+			margin: 0;
+			&>li{
+				float: left;
+				&>a{
+					padding-top: 15px;
+	    		padding-bottom: 15px;
+				}
 			}
 		}
-	}
-	.fa{
-		font-size: 1.4em;
-		color: #555;
+		.fa{
+			font-size: 1.4em;
+			color: #555;
+		}
 	}
 }
 

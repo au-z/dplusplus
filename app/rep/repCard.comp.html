@@ -1,0 +1,29 @@
+<div id="rep_{{rep.id}}" class="card col-lg-12">
+	<div class="card-title row party_{{rep.party}}">
+		<div class="col-xs-8">
+			<h4>{{rep.person.name}}</h4>
+			<span class="card-subtitle">{{rep.description}}</span>
+		</div>
+		<div class="rep-links col-xs-4">
+			<ul class="nav navbar-nav navbar-right">
+				<li *ngIf="rep.person.twitterid !== null">
+					<a class="fa fa-twitter" href="https://twitter.com/{{rep.person.twitterid}}"></a>
+				</li>
+				<li *ngIf="rep.person.youtubeid !== null">
+					<a class="fa fa-youtube-play" href="https://www.youtube.com/user/{{rep.person.youtubeid}}"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="card-content row">
+		<div class="col-lg-8">
+			<ul>
+				<li>Start Date: {{rep.startdate}}</li>
+				<li><a href="{{rep.website}}">Website</a></li>
+				<li>Phone: {{rep.phone}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="card-footer"></div>
+</div>

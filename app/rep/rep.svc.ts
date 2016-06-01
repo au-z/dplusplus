@@ -17,7 +17,7 @@ export class RepSvc{
 	private DEFAULT_LIMIT: number = 20;
 
 	getReps(query : QueryParams){
-		return this.http.get(this._mockRepsUrl + this.formatQuery(query))
+		return this.http.get(this.serviceUrl + this.formatQuery(query))
 			.map(res => <Rep[]> res.json().objects)
 			.catch(this.handleError);
 	}
