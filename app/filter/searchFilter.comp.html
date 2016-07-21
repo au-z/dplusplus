@@ -1,13 +1,12 @@
 <div id="filter">
-	<div class="container">
-		<form>
-			<div class="form-group"><label for="state">State</label>
-				<select (change)="editStateFilter($event.target.value)" [ngFormControl]="stateControl">
-					<option *ngFor="#state of states" [value]="state">{{state | uppercase}}</option>
-				</select>
-			</div>
-			<div class="form-group"><label for="current">Current</label>
-			<input (click)="editCurrentFilter()" checked type='checkbox'/></div>
-		</form>
-	</div>
+	<form>
+		<div id="us-map" style="width: 100%; height: 260px;"></div>
+		<div class="form-group"><label for="state">State</label>
+			<select (change)="editStateFilter(null, $event.target.value)" [ngFormControl]="stateControl" value="{{selectedState}}">
+				<option *ngFor="#state of states" [value]="state">{{state | uppercase}}</option>
+			</select>
+		</div>
+		<div class="form-group"><label for="current">Current</label>
+		<input (click)="editCurrentFilter()" checked type='checkbox'/></div>
+	</form>
 </div>

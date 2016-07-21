@@ -42,7 +42,7 @@ var RepCtx = (function () {
     };
     RepCtx.prototype.getReps = function (query) {
         var _this = this;
-        this.repSvc.getReps(query).subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; }, function () { return console.log('got reps.'); });
+        this.repSvc.getReps(query).subscribe(function (reps) { return _this.reps = reps; }, function (error) { return _this.errorMessage = error; });
     };
     RepCtx.prototype.onSelect = function (rep) {
         console.log(rep.id);
@@ -59,6 +59,6 @@ var RepCtx = (function () {
         __metadata('design:paramtypes', [router_1.Router, rep_svc_1.RepSvc])
     ], RepCtx);
     return RepCtx;
-})();
+}());
 exports.RepCtx = RepCtx;
 //# sourceMappingURL=repCtx.comp.js.map

@@ -35,6 +35,6 @@ var DppAppComp = (function () {
         __metadata('design:paramtypes', [])
     ], DppAppComp);
     return DppAppComp;
-})();
+}());
 exports.DppAppComp = DppAppComp;
 //# sourceMappingURL=app.comp.js.map

@@ -52,6 +52,6 @@ var RepSvc = (function () {
         __metadata('design:paramtypes', [http_1.Http])
     ], RepSvc);
     return RepSvc;
-})();
+}());
 exports.RepSvc = RepSvc;
 //# sourceMappingURL=rep.svc.js.map

@@ -1,0 +1,14 @@
+@import 'colors';
+
+.navbar-brand{
+	font-size: 2em;
+}
+
+ul.nav{
+	.router-link-active{
+		border-style: inset;
+		border: 0;
+		background-color: $cl;
+		border-bottom: 3px solid $republican-red;
+	}
+}

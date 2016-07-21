@@ -60,8 +60,7 @@ export class RepCtx implements OnInit{
 	getReps(query: QueryParams) {
 		this.repSvc.getReps(query).subscribe(
 			reps => this.reps = reps,
-			error => this.errorMessage = <any>error,
-			() => console.log('got reps.'));
+			error => this.errorMessage = <any>error);
 	}
 
 	onSelect(rep: Rep){

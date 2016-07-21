@@ -18,7 +18,8 @@ var SearchFilterComp = (function () {
         this.queryEmitter = new core_1.EventEmitter();
         this.emitFilterChange(true);
     }
-    SearchFilterComp.prototype.editStateFilter = function (value) {
+    SearchFilterComp.prototype.editStateFilter = function (e, value) {
+        console.log("selected state: ", value);
         var filterIdx = this.query.filter.findIndex(function (f) { return f.key === 'state'; });
         if (filterIdx == -1 && value) {
             this.query.filter.push({
@@ -44,6 +45,25 @@ var SearchFilterComp = (function () {
     };
     SearchFilterComp.prototype.emitFilterChange = function (doSearch) {
         this.queryEmitter.next({ query: this.query });
+    };
+    SearchFilterComp.prototype.ngAfterViewInit = function () {
+        $('#us-map').vectorMap({
+            map: 'us_lcc',
+            backgroundColor: '#fff',
+            zoomOnScroll: false,
+            regionStyle: {
+                initial: {
+                    fill: '#777'
+                },
+                hover: {
+                    fill: '#6485E3'
+                },
+                selected: {
+                    fill: 'yellow'
+                }
+            },
+            onRegionClick: $.proxy(this.editStateFilter, this),
+        });
     };
     SearchFilterComp.prototype.initQuery = function () {
         this.selectedState = 'MN';
@@ -73,6 +93,6 @@ var SearchFilterComp = (function () {
         __metadata('design:paramtypes', [])
     ], SearchFilterComp);
     return SearchFilterComp;
-})();
+}());
 exports.SearchFilterComp = SearchFilterComp;
 //# sourceMappingURL=searchFilter.comp.js.map

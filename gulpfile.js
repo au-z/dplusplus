@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 gulp.task('sass', function(){
 	return gulp.src('./app/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
+		.pipe(concat('css/style.css'))
 		.pipe(cssmin())
 		.pipe(gulp.dest('./dist/app'));
 });

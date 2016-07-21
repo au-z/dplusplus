@@ -1,12 +1,4 @@
-$cl: #F3F4F5;
-$cml: #c7c0bc;
-$cm: #908575;
-$cd: #453e31;
-$ca: #ca774e;
-
-$democrat-blue: #6485E3;
-$republican-red: #E36D5D;
-$independent-gray: #F3F4F5;
+@import 'colors';
 
 @font-face{
 	font-family: "university_oldstyle";
@@ -26,38 +18,17 @@ h1{
 }
 
 h3{
-
 	color: $ca;
+}
+
+rep-context{
+	& > div, search-filter{
+		margin-top: 80px;
+	}
 }
 
 .pg-title{
 	border-bottom: 1px solid $cml;
-}
-
-nav.navbar{
-	background-color: white;
-	border: 0;
-	&.nav>li {
-		float: left;
-	}
-	.router-link-active{
-		border-style: inset;
-		border: 0;
-		background-color: $cl;
-		border-bottom: 3px solid $republican-red;
-	}
-	.navbar-brand{
-		padding: 12px;
-		font-size: 2.4em;
-	}
-	a{
-		color: #555;
-
-	}
-}
-
-.content{
-	margin-top: 80px;
 }
 
 .filters{
@@ -83,6 +54,7 @@ div.reps{
 	margin: 0.75rem 0 1.5rem 0;
 	background-color: #fff;
 	transition: box-shadow .25s;
+	border: 1px solid #ddd;
 	border-radius: 2px;
 	&:first-child{
 		margin-top: 0;

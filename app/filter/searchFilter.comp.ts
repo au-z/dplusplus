@@ -1,6 +1,8 @@
 'use strict';
 
-import {Component, EventEmitter} from 'angular2/core';
+declare var $: any;
+
+import {Component, EventEmitter, OnInit, AfterViewInit} from 'angular2/core';
 import {Control} from 'angular2/common';
 import {QueryParams, Filter, FilterOp} from '../govtrack/queryParams';
 
@@ -10,7 +12,7 @@ import {QueryParams, Filter, FilterOp} from '../govtrack/queryParams';
 	templateUrl: 'app/filter/searchFilter.comp.html'
 })
 
-export class SearchFilterComp{
+export class SearchFilterComp implements OnInit, AfterViewInit{
 	public query: QueryParams;
 	states = <string[]>['', 'AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MH', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY'];
 	selectedState: string;
@@ -25,7 +27,8 @@ export class SearchFilterComp{
 		this.emitFilterChange(true);
 	}
 
-	editStateFilter(value) {
+	editStateFilter(e, value) {
+		console.log("selected state: ", value);
 		let filterIdx = this.query.filter.findIndex(f => f.key === 'state');
 		if (filterIdx == -1 && value) { //add filter
 			this.query.filter.push({
@@ -53,6 +56,27 @@ export class SearchFilterComp{
 		this.queryEmitter.next({ query: <QueryParams>this.query });
 	}
 
+	ngAfterViewInit(){
+		$('#us-map').vectorMap({
+			map: 'us_lcc',
+			backgroundColor: '#fff',
+			zoomOnScroll: false,
+			regionStyle: {
+				initial: {
+					fill: '#777'
+				},
+				hover:{
+					fill: '#6485E3'
+				},
+				selected: {
+					fill: 'yellow'
+				}
+			},
+			onRegionClick: $.proxy(this.editStateFilter, this),
+
+		});
+	}
+
 	initQuery(){
 		this.selectedState = 'MN';
 		var stateFilter = {
@@ -60,7 +84,6 @@ export class SearchFilterComp{
 			operator: 'exact' as FilterOp,
 			value: 'MN'
 		} as Filter;
-
 
 		var currentFilter = {
 			key: 'current',
